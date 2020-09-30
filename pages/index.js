@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { gql, useQuery } from '@apollo/client';
-import SignIn from '../components/signin';
+import SignIn from '../components/Signin';
 
 const ViewerQuery = gql`
 	query ViewerQuery {
