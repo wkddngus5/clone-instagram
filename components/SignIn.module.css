@@ -1,4 +1,91 @@
+.article {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+	margin: 64px auto 0;
+	justify-content: center;
+	max-width: 935px;
+	padding-bottom: 64px;
+	width: 100%;
+}
+
+.phone {
+	background-image: url(/home-phone.png);
+	background-size: 454px 618px;
+	background-position: center;
+	background-repeat: no-repeat;
+	flex-basis: 454px;
+	height: 618px;
+}
+
+.phoneScreen {
+	margin: 99px 0 0 151px;
+	position: relative;
+}
+
+.phoneScreenImage {
+	position: absolute;
+	width: 240px;
+	height: 427px;
+	left: 0;
+	visibility: hidden;
+	opacity: 0;
+	transition: 3s;
+}
+
 .visible {
 	opacity: 1 !important;
 	visibility: visible !important;
+}
+
+.title {
+	height: 51px;
+    width: 175px;
+	margin: 22px auto 12px;
+	background-image: url(/images.png);
+	background-size: 440px 411px;
+    background-position: 0 -129px;
+    background-position-x: 0px;
+    background-position-y: -129px;
+	font: inherit;
+    font-style: inherit;
+    font-variant-ligatures: inherit;
+    font-variant-caps: inherit;
+    font-variant-numeric: inherit;
+    font-variant-east-asian: inherit;
+    font-weight: inherit;
+    font-stretch: inherit;
+    font-size: inherit;
+    line-height: inherit;
+	font-family: inherit;
+	text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.card {
+	margin-top: 12px;
+	max-width: 350px;
+	justify-content: center;
+	border: 1px solid rgba(var(--b6a,219,219,219),1)
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+}
+
+.formInput {
+	font-size: 16px;
+	background: rgba(var(--b3f,250,250,250),1);
+    border: 0;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    margin: 0;
+    outline: 0;
+    overflow: hidden;
+    padding: 9px 0 7px 8px;
+    text-overflow: ellipsis;
 }

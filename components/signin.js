@@ -4,9 +4,11 @@ import Link from 'next/link'
 import { gql } from '@apollo/client'
 import { useMutation, useApolloClient } from '@apollo/client'
 import { getErrorMessage } from '../lib/form'
-import Field from './field'
+// import Field from './field'
+import Input from './Input';
 import styles from './SignIn.module.css';
 
+console.log(Input);
 const screenImageStyle = {
 	position: 'absolute',
 	width: '240px',
@@ -65,64 +67,30 @@ function SignIn() {
 
   return (
     <main>
-		<article
-			style={{
-				display: 'flex',
-				flexDirection: 'row',
-				flexGrow: 1,
-				margin: '64px auto 0',
-				justifyContent: 'center',
-				maxWidth: '935px',
-				paddingBottom: '64px',
-				width: '100%',
-			}}>
-			<div
-				className="phone"
-				style={{
-					backgroundImage: 'url(/home-phone.png)',
-					backgroundSize: '454px 618px',
-					backgroundPosition: 'center',
-					backgroundRepeat: 'no-repeat',
-					flexBasis: '454px',
-					height: '618px',
-				}}
-				>
-					<div
-						className="phone-screen"
-						style={{
-							margin: '99px 0 0 151px',
-							position: 'relative',
-						}}>
-						<img className={visibleImageIndex === 0 ? styles.visible : null} src="/phone-screen1.jpg" style={screenImageStyle}></img>
-						<img className={visibleImageIndex === 1 ? styles.visible : null} src="/phone-screen2.jpg" style={screenImageStyle}></img>
-						<img className={visibleImageIndex === 2 ? styles.visible : null} src="/phone-screen3.jpg" style={screenImageStyle}></img>
-						<img className={visibleImageIndex === 3 ? styles.visible : null} src="/phone-screen4.jpg" style={screenImageStyle}></img>
-					</div>
+		<article className={styles.article}>
+			<div className={styles.phone}>
+				<div
+					className={styles.phoneScreen}>
+					<img className={ `${ styles.phoneScreenImage } ${ visibleImageIndex === 0 ? styles.visible : '' }`} src="/phone-screen1.jpg" style={screenImageStyle}></img>
+					<img className={ `${ styles.phoneScreenImage } ${ visibleImageIndex === 1 ? styles.visible : '' }`} src="/phone-screen2.jpg" style={screenImageStyle}></img>
+					<img className={ `${ styles.phoneScreenImage } ${ visibleImageIndex === 2 ? styles.visible : '' }`} src="/phone-screen3.jpg" style={screenImageStyle}></img>
+					<img className={ `${ styles.phoneScreenImage } ${ visibleImageIndex === 3 ? styles.visible : '' }`} src="/phone-screen4.jpg" style={screenImageStyle}></img>
 				</div>
-			<div className="form"></div>
+			</div>
+			<div className="form-container">
+				<div className={styles.card}>
+					<h1 className={styles.title}>Instagram</h1>
+					<form onSubmit={handleSubmit}>
+						<Input
+							value=""
+							placeholder="전화번호, 사용자 이름 또는 이메일" />
+					</form>
+				</div>
+				<div className={styles.card}>
+					계정이 없으신가요? 가입하기
+				</div>
+			</div>
 		</article>
-      <h1>Sign In</h1>
-      <form onSubmit={handleSubmit}>
-        {errorMsg && <p>{errorMsg}</p>}
-        <Field
-          name="email"
-          type="email"
-          autoComplete="email"
-          required
-          label="Email"
-        />
-        <Field
-          name="password"
-          type="password"
-          autoComplete="password"
-          required
-          label="Password"
-        />
-        <button type="submit">Sign in</button> or{' '}
-        <Link href="signup">
-          <a>Sign up</a>
-        </Link>
-      </form>
     </main>
   )
 }
