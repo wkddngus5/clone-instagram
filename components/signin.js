@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import { gql } from '@apollo/client'
 import { useMutation, useApolloClient } from '@apollo/client'
 import { getErrorMessage } from '../lib/form'
-import Field from './field'
+import Input from './Input';
 import styles from './SignIn.module.css';
 
 const screenImageStyle = {
@@ -65,64 +64,73 @@ function SignIn() {
 
   return (
     <main>
-		<article
-			style={{
-				display: 'flex',
-				flexDirection: 'row',
-				flexGrow: 1,
-				margin: '64px auto 0',
-				justifyContent: 'center',
-				maxWidth: '935px',
-				paddingBottom: '64px',
-				width: '100%',
-			}}>
-			<div
-				className="phone"
-				style={{
-					backgroundImage: 'url(/home-phone.png)',
-					backgroundSize: '454px 618px',
-					backgroundPosition: 'center',
-					backgroundRepeat: 'no-repeat',
-					flexBasis: '454px',
-					height: '618px',
-				}}
-				>
-					<div
-						className="phone-screen"
-						style={{
-							margin: '99px 0 0 151px',
-							position: 'relative',
-						}}>
-						<img className={visibleImageIndex === 0 ? styles.visible : null} src="/phone-screen1.jpg" style={screenImageStyle}></img>
-						<img className={visibleImageIndex === 1 ? styles.visible : null} src="/phone-screen2.jpg" style={screenImageStyle}></img>
-						<img className={visibleImageIndex === 2 ? styles.visible : null} src="/phone-screen3.jpg" style={screenImageStyle}></img>
-						<img className={visibleImageIndex === 3 ? styles.visible : null} src="/phone-screen4.jpg" style={screenImageStyle}></img>
+		<article className={styles.article}>
+			<div className={styles.phone}>
+				<div
+					className={styles.phoneScreen}>
+					<img className={ `${ styles.phoneScreenImage } ${ visibleImageIndex === 0 ? styles.visible : '' }`} src="/phone-screen1.jpg" style={screenImageStyle}></img>
+					<img className={ `${ styles.phoneScreenImage } ${ visibleImageIndex === 1 ? styles.visible : '' }`} src="/phone-screen2.jpg" style={screenImageStyle}></img>
+					<img className={ `${ styles.phoneScreenImage } ${ visibleImageIndex === 2 ? styles.visible : '' }`} src="/phone-screen3.jpg" style={screenImageStyle}></img>
+					<img className={ `${ styles.phoneScreenImage } ${ visibleImageIndex === 3 ? styles.visible : '' }`} src="/phone-screen4.jpg" style={screenImageStyle}></img>
+				</div>
+			</div>
+			<div className="form-container">
+				<div className={styles.card}>
+					<h1 className={styles.title}>Instagram</h1>
+					<div className={styles.formWrapper}>
+						<form
+							id="loginForm"
+							method="post"
+							onSubmit={handleSubmit}>
+							<div className={styles.formBody}>
+								<div className={styles.formItem}>
+									<Input
+										type="text"
+										placeholder="전화번호, 사용자 이름 또는 이메일" />
+								</div>
+								<div className={styles.formItem}>
+									<Input
+										type="password"
+										placeholder="비밀번호" />
+								</div>
+								<div className={styles.formSubmitWrapper}>
+									<button className={styles.formSubmit}>로그인</button>
+								</div>
+								<div className={styles.divider}>
+									<div className={styles.horizontalLine}></div>
+									<div className={styles.dividerText}>또는</div>
+									<div className={styles.horizontalLine}></div>
+								</div>
+								<div className={styles.facebookLoginWrapper}>
+									<button className={styles.facebookLoginButton}>
+										<span className={styles.facebookLogo} />
+										<span className={styles.facebookLoginButtonText}>Facebook으로 로그인</span>
+									</button>
+								</div>
+							</div>
+							<div className={styles.findPasswordButtonWrapper}>
+								<a className={styles.findPasswordButton}>비밀번호를 잊으셨나요?</a>
+							</div>
+						</form>
 					</div>
 				</div>
-			<div className="form"></div>
+				<div className={styles.card}>
+					<div>
+						<p style={{
+							display: 'block',
+							width: 'fit-content',
+							margin: '15px auto',
+							color: 'rgba(var(--i1d,38,38,38),1)',
+							fontSize: '14px',
+							cursor: 'pointer',
+						}}>
+							계정이 없으신가요?
+							<a style={{color: '#0095f6'}}>가입하기</a>
+						</p>
+					</div>
+				</div>
+			</div>
 		</article>
-      <h1>Sign In</h1>
-      <form onSubmit={handleSubmit}>
-        {errorMsg && <p>{errorMsg}</p>}
-        <Field
-          name="email"
-          type="email"
-          autoComplete="email"
-          required
-          label="Email"
-        />
-        <Field
-          name="password"
-          type="password"
-          autoComplete="password"
-          required
-          label="Password"
-        />
-        <button type="submit">Sign in</button> or{' '}
-        <Link href="signup">
-          <a>Sign up</a>
-        </Link>
-      </form>
     </main>
   )
 }

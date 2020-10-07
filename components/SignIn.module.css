@@ -1,4 +1,213 @@
+.article {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+	margin: 64px auto 0;
+	justify-content: center;
+	max-width: 935px;
+	padding-bottom: 64px;
+	width: 100%;
+}
+
+.phone {
+	background-image: url(/home-phone.png);
+	background-size: 454px 618px;
+	background-position: center;
+	background-repeat: no-repeat;
+	flex-basis: 454px;
+	height: 618px;
+}
+
+.phoneScreen {
+	margin: 99px 0 0 151px;
+	position: relative;
+}
+
+.phoneScreenImage {
+	position: absolute;
+	width: 240px;
+	height: 427px;
+	left: 0;
+	visibility: hidden;
+	opacity: 0;
+	transition: 3s;
+}
+
 .visible {
 	opacity: 1 !important;
 	visibility: visible !important;
+}
+
+.title {
+	height: 51px;
+    width: 175px;
+	margin: 22px auto 12px;
+	background-image: url(/images.png);
+	background-size: 440px 411px;
+    background-position: 0 -129px;
+    background-position-x: 0px;
+    background-position-y: -129px;
+	font: inherit;
+    font-style: inherit;
+    font-variant-ligatures: inherit;
+    font-variant-caps: inherit;
+    font-variant-numeric: inherit;
+    font-variant-east-asian: inherit;
+    font-weight: inherit;
+    font-stretch: inherit;
+    font-size: inherit;
+    line-height: inherit;
+	font-family: inherit;
+	text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.card {
+	margin: 0 0 10px;
+	padding: 10px 0;
+	margin-top: 12px;
+	max-width: 350px;
+	justify-content: center;
+	border: 1px solid rgba(var(--b6a,219,219,219),1);
+	background-color: #ffffff;
+}
+.formWrapper {
+	margin-bottom: 10px;
+    max-width: 350px;
+	width: 100%;
+	border-top: 1px solid #ffffff;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+}
+
+.formBody {
+	margin-top: 24px;
+	border-bottom: 1px solid #ffffff;
+}
+
+.formItem {
+	margin: 0 40px 6px;
+}
+
+.formInput {
+	font-size: 16px;
+	background: rgba(var(--b3f,250,250,250),1);
+    border: 0;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    margin: 0;
+    outline: 0;
+    overflow: hidden;
+    padding: 9px 0 7px 8px;
+    text-overflow: ellipsis;
+}
+
+.formSubmitWrapper {
+	margin: 8px 40px 8px 40px;
+	border: 1px solid #ffffff;
+}
+
+.formSubmit {
+	background-color: rgba(var(--d69,0,149,246),.3);
+	opacity: 1;
+	border: 1px solid transparent;
+	box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-weight: 600;
+    padding: 5px 9px;
+    text-align: center;
+    text-transform: inherit;
+	text-overflow: ellipsis;
+	user-select: none;
+	width: 100%;
+	border-radius: 4px;
+	color: rgba(var(--eca,255,255,255),1);
+}
+
+.divider {
+	margin: 10px 40px 18px;
+	display: flex;
+}
+
+.horizontalLine {
+	flex-grow: 1;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    background-color: #dbdbdb;
+    background-color: rgba(var(--b38,219,219,219),1);
+    height: 1px;
+    position: relative;
+    top: .45em;
+}
+
+.dividerText {
+	flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 15px;
+    margin: 0 18px;
+	text-transform: uppercase;
+	color: rgba(var(--f52,142,142,142),1);
+}
+
+.facebookLoginWrapper {
+	margin: 10px 40px 18px;
+	text-align: center;
+}
+
+.facebookLoginButton {
+	border: 0;
+    color: #0095f6;
+    color: rgba(var(--d69,0,149,246),1);
+    display: inline;
+    padding: 0;
+	position: relative;
+	background: 0 0;
+	cursor: pointer;
+	font-weight: 600;
+}
+
+.facebookLoginButtonText {
+	color: #385185;
+}
+
+.facebookLogo {
+	display: inline-block;
+    margin-right: 8px;
+    position: relative;
+    top: 3px;
+	height: 16px;
+    width: 16px;
+	background-image: url(/images3.png);
+	background-size: 440px 411px;
+	background-position: -347px -329px;
+}
+
+.findPasswordButtonWrapper {
+	flex: 0 0 auto;
+	justify-content: flex-start;
+	align-items: stretch;
+	display: flex;
+	border: 0 solid;
+	text-align: center;
+}
+
+.findPasswordButton {
+	display: block;
+	width: 100%;
+	margin-top: 12px;
+	color: rgba(var(--fe0,0,55,107),1);
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 12px;
+	text-align: center;
+	cursor: pointer;
 }

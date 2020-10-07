@@ -30,11 +30,11 @@ const Index = () => {
 	if (viewer) {
 		return (
 			<div>
-				You're signed in as {viewer.email} goto{' '}
+				You're signed in as {viewer.email} goto
 				<Link href="/about">
 					<a>about</a>
-				</Link>{' '}
-				page. or{' '}
+				</Link>
+				page. or
 				<Link href="/signout">
 					<a>signout</a>
 				</Link>
