@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import { gql } from '@apollo/client'
 import { useMutation, useApolloClient } from '@apollo/client'
 import { getErrorMessage } from '../lib/form'
-// import Field from './field'
 import Input from './Input';
 import styles from './SignIn.module.css';
 
-console.log(Input);
 const screenImageStyle = {
 	position: 'absolute',
 	width: '240px',
@@ -80,14 +77,57 @@ function SignIn() {
 			<div className="form-container">
 				<div className={styles.card}>
 					<h1 className={styles.title}>Instagram</h1>
-					<form onSubmit={handleSubmit}>
-						<Input
-							value=""
-							placeholder="전화번호, 사용자 이름 또는 이메일" />
-					</form>
+					<div className={styles.formWrapper}>
+						<form
+							id="loginForm"
+							method="post"
+							onSubmit={handleSubmit}>
+							<div className={styles.formBody}>
+								<div className={styles.formItem}>
+									<Input
+										type="text"
+										placeholder="전화번호, 사용자 이름 또는 이메일" />
+								</div>
+								<div className={styles.formItem}>
+									<Input
+										type="password"
+										placeholder="비밀번호" />
+								</div>
+								<div className={styles.formSubmitWrapper}>
+									<button className={styles.formSubmit}>로그인</button>
+								</div>
+								<div className={styles.divider}>
+									<div className={styles.horizontalLine}></div>
+									<div className={styles.dividerText}>또는</div>
+									<div className={styles.horizontalLine}></div>
+								</div>
+								<div className={styles.facebookLoginWrapper}>
+									<button className={styles.facebookLoginButton}>
+										<span className={styles.facebookLogo} />
+										<span className={styles.facebookLoginButtonText}>Facebook으로 로그인</span>
+									</button>
+								</div>
+							</div>
+							<div className={styles.findPasswordButtonWrapper}>
+								<a className={styles.findPasswordButton}>비밀번호를 잊으셨나요?</a>
+							</div>
+						</form>
+					</div>
 				</div>
 				<div className={styles.card}>
-					계정이 없으신가요? 가입하기
+					<div>
+						<p style={{
+							display: 'block',
+							width: 'fit-content',
+							margin: '15px auto',
+							color: 'rgba(var(--i1d,38,38,38),1)',
+							fontSize: '14px',
+							cursor: 'pointer',
+						}}>
+							계정이 없으신가요?
+							<a style={{color: '#0095f6'}}>가입하기</a>
+						</p>
+					</div>
 				</div>
 			</div>
 		</article>
