@@ -114,7 +114,7 @@
 }
 
 .formSubmit {
-	background-color: rgba(var(--d69,0,149,246),.3);
+	background-color: rgba(0,149,246,.3);
 	opacity: 1;
 	border: 1px solid transparent;
 	box-sizing: border-box;
@@ -129,6 +129,10 @@
 	width: 100%;
 	border-radius: 4px;
 	color: rgba(var(--eca,255,255,255),1);
+}
+
+.formSubmitActive {
+	background-color: #0095f6;
 }
 
 .divider {
@@ -191,6 +195,12 @@
 	background-position: -347px -329px;
 }
 
+.errorMessageWrapper {
+	margin: 10px 40px;
+	color: #ff0000;
+	font-size: 14px;
+}
+
 .findPasswordButtonWrapper {
 	flex: 0 0 auto;
 	justify-content: flex-start;
@@ -210,4 +220,17 @@
     margin-top: 12px;
 	text-align: center;
 	cursor: pointer;
+	text-decoration: none;
+}
+
+.hidden {
+	display: none;
+}
+
+.downloadAppText {
+	color: #262626;
+    font-size: 14px;
+    line-height: 18px;
+    margin: 10px 20px 10px 20px;
+    text-align: center;
 }

@@ -1,6 +1,7 @@
 import { ApolloProvider } from '@apollo/client';
 import { useEffect } from 'react';
 import { useApollo } from '../apollo/client';
+import Footer from '../components/Footer';
 import './styles.css';
 
 export default function App({ Component, pageProps }) {
@@ -16,6 +17,7 @@ export default function App({ Component, pageProps }) {
 	return (
 		<ApolloProvider client={apolloClient}>
 			<Component {...pageProps} />
+			<Footer />
 		</ApolloProvider>
 	);
 }
