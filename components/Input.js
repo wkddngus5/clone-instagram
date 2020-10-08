@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Input.module.css';
 
-export default function Input({ type = 'text', value = '', placeholder = '' }) {
+export default function Input({ type = 'text', value = '', placeholder = '', onChange }) {
 	const [inputValue, setInputValue] = useState(value);
 
 	useEffect( () => {
-		setInputValue(value);
-	}, [value]);
+		if (onChange) {
+			onChange(inputValue);
+		}
+	}, [inputValue]);
 
 	const isActive = inputValue.length > 0;
 
