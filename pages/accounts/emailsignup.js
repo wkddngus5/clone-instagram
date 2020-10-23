@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { gql } from '@apollo/client'
-import { useMutation, useApolloClient } from '@apollo/client'
-import { getErrorMessage } from '../lib/form'
-import Input from './Input';
-import styles from './SignIn.module.css';
+import Link from 'next/link'
+import { gql, useMutation } from '@apollo/client'
+import { getErrorMessage } from '../../lib/form'
+import Field from '../../components/field'
+import styles from '../../components/SignIn.module.css';
+import Input from '../../components/Input';
 
 const screenImageStyle = {
 	position: 'absolute',
@@ -16,9 +17,9 @@ const screenImageStyle = {
 	transition: '3s',
 };
 
-const SignInMutation = gql`
-  mutation SignInMutation($email: String!, $password: String!) {
-    signIn(input: { email: $email, password: $password }) {
+const SignUpMutation = gql`
+  mutation SignUpMutation($email: String!, $password: String!) {
+    signUp(input: { email: $email, password: $password }) {
       user {
         id
         email
@@ -27,48 +28,37 @@ const SignInMutation = gql`
   }
 `
 
-function SignIn() {
-  const client = useApolloClient();
-  const [signIn] = useMutation(SignInMutation);
-  const [errorMsg, setErrorMsg] = useState();
+function SignUp() {
+  const [signUp] = useMutation(SignUpMutation)
+  const [errorMsg, setErrorMsg] = useState()
+  const router = useRouter()
   const [visibleImageIndex, setVisibleImageIndex] = useState(0);
-  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  useEffect( () => {
-	setTimeout(() => {
-		setVisibleImageIndex((visibleImageIndex + 1) % 4);
-	}, 4000)
-  }, [visibleImageIndex]);
-
   async function handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
+    const emailElement = event.currentTarget.elements.email
+    const passwordElement = event.currentTarget.elements.password
+
     try {
-	  await client.resetStore();
-      const { data } = await signIn({
+      await signUp({
         variables: {
-          email,
-          password,
+          email: emailElement.value,
+          password: passwordElement.value,
         },
-	  });
+      })
+
+      router.push('/')
     } catch (error) {
       setErrorMsg(getErrorMessage(error))
     }
   }
 
   return (
-    <main>
+    <>
+      <main>
 		<article className={styles.article}>
-			<div className={styles.phone}>
-				<div
-					className={styles.phoneScreen}>
-					<img className={ `${ styles.phoneScreenImage } ${ visibleImageIndex === 0 ? styles.visible : '' }`} src="/phone-screen1.jpg" style={screenImageStyle}></img>
-					<img className={ `${ styles.phoneScreenImage } ${ visibleImageIndex === 1 ? styles.visible : '' }`} src="/phone-screen2.jpg" style={screenImageStyle}></img>
-					<img className={ `${ styles.phoneScreenImage } ${ visibleImageIndex === 2 ? styles.visible : '' }`} src="/phone-screen3.jpg" style={screenImageStyle}></img>
-					<img className={ `${ styles.phoneScreenImage } ${ visibleImageIndex === 3 ? styles.visible : '' }`} src="/phone-screen4.jpg" style={screenImageStyle}></img>
-				</div>
-			</div>
 			<div className={styles.siginContent}>
 				<div className={styles.card}>
 					<h1 className={styles.title}>Instagram</h1>
@@ -77,11 +67,37 @@ function SignIn() {
 							id="loginForm"
 							method="post"
 							onSubmit={handleSubmit}>
+							<h2>친구들의 사진과 동영상을 보려면 가입하세요.</h2>
 							<div className={styles.formBody}>
+								<div className={styles.facebookLoginWrapper}>
+									<button className={styles.facebookLoginButton}>
+										<span className={styles.facebookLogo} />
+										<span className={styles.facebookLoginButtonText}>Facebook으로 로그인</span>
+									</button>
+								</div>
+								<div className={styles.divider}>
+									<div className={styles.horizontalLine}></div>
+									<div className={styles.dividerText}>또는</div>
+									<div className={styles.horizontalLine}></div>
+								</div>
 								<div className={styles.formItem}>
 									<Input
 										type="text"
-										placeholder="전화번호, 사용자 이름 또는 이메일"
+										placeholder="휴대폰 또는 이메일 주소"
+										value={email}
+										onChange={setEmail} />
+								</div>
+								<div className={styles.formItem}>
+									<Input
+										type="text"
+										placeholder="성명"
+										value={email}
+										onChange={setEmail} />
+								</div>
+								<div className={styles.formItem}>
+									<Input
+										type="text"
+										placeholder="사용자 이름"
 										value={email}
 										onChange={setEmail} />
 								</div>
@@ -95,18 +111,7 @@ function SignIn() {
 								<div className={styles.formSubmitWrapper}>
 									<button
 										className={`${styles.formSubmit} ${email.length > 0 && password.length > 5 ? styles.formSubmitActive : ''}`}
-										onClick={handleSubmit}>로그인</button>
-								</div>
-								<div className={styles.divider}>
-									<div className={styles.horizontalLine}></div>
-									<div className={styles.dividerText}>또는</div>
-									<div className={styles.horizontalLine}></div>
-								</div>
-								<div className={styles.facebookLoginWrapper}>
-									<button className={styles.facebookLoginButton}>
-										<span className={styles.facebookLogo} />
-										<span className={styles.facebookLoginButtonText}>Facebook으로 로그인</span>
-									</button>
+										onClick={handleSubmit}>가입</button>
 								</div>
 							</div>
 							<div className={`${styles.errorMessageWrapper} ${errorMsg ? '' : styles.hidden}`}>
@@ -115,11 +120,14 @@ function SignIn() {
 								</p>
 							</div>
 							<div className={styles.findPasswordButtonWrapper}>
-								<a
-									className={styles.findPasswordButton}
-									href="/accounts/password/reset">
-									비밀번호를 잊으셨나요?
-								</a>
+								<p>
+									가입하면 Instagram의 
+									<a>약관</a>
+									, 
+									<a>데이터 정책</a> 및 
+									<a>쿠키 정책</a>
+									에 동의하게 됩니다.
+								</p>
 							</div>
 						</form>
 					</div>
@@ -170,7 +178,8 @@ function SignIn() {
 			</div>
 		</article>
     </main>
+    </>
   )
 }
 
-export default SignIn
+export default SignUp
