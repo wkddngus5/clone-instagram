@@ -88,7 +88,7 @@ function FormCard() {
 							errorMsg ? '' : styles.hidden
 						}`}
 					>
-						<p style={{ textAlign: 'center' }}>
+						<p className={styles.errorMessage}>
 							잘못된 비밀번호입니다. 다시 확인하세요.
 						</p>
 					</div>

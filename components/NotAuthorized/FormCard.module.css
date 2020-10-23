@@ -129,6 +129,10 @@
 	font-size: 14px;
 }
 
+.errorMessage {
+	text-align: center;
+}
+
 .findPasswordButtonWrapper {
 	flex: 0 0 auto;
 	justify-content: flex-start;
