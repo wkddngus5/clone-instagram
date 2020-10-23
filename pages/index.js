@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { gql, useQuery } from '@apollo/client';
-import SignIn from '../components/Signin';
+import NotAuthorized from '../components/NotAuthorized';
 
 const ViewerQuery = gql`
 	query ViewerQuery {
@@ -19,16 +19,14 @@ const Index = () => {
 	const viewer = data?.viewer;
 	const showSignIn = !(loading || error || viewer);
 
+	let content = (<>Loading</>);
+
 	if (showSignIn) {
-		return <SignIn />;
-	}
-
-	if (error) {
-		return <p>{error.message}</p>;
-	}
-
-	if (viewer) {
-		return (
+		content = (<NotAuthorized showImage />);
+	} else if (error) {
+		content = (<p>{error.message}</p>);
+	} else if (viewer) {
+		content = (
 			<div>
 				You're signed in as {viewer.email} goto
 				<Link href="/about">
@@ -42,7 +40,7 @@ const Index = () => {
 		);
 	}
 
-	return <p>Loading...</p>;
+	return <main>{content}</main>;
 };
 
 export default Index;
