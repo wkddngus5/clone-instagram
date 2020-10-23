@@ -1,6 +1,7 @@
 import Card from '../Card';
 import Phone from '../Phone';
 import FormCard from './FormCard';
+import ToggleSigninAndSignupCard from './ToggleSigninAndSignupCard';
 import styles from './NotAuthorized.module.css';
 
 function NotAuthorized({ showImage = false }) {
@@ -9,26 +10,7 @@ function NotAuthorized({ showImage = false }) {
 			{ showImage && ( <Phone /> )}
 			<div className={styles.siginContent}>
 				<FormCard />
-				<Card>
-					<div>
-						<p style={{
-							display: 'block',
-							width: 'fit-content',
-							margin: '15px auto',
-							color: 'rgba(var(--i1d,38,38,38),1)',
-							fontSize: '14px',
-							cursor: 'pointer',
-						}}>
-							계정이 없으신가요?&nbsp;
-							<a
-								style={{
-									color: '#0095f6',
-									textDecoration: 'none',
-								}}
-								href="/accounts/emailsignup">가입하기</a>
-						</p>
-					</div>
-				</Card>
+				<ToggleSigninAndSignupCard />
 				<div style={{display: 'inline-block', width: '100%'}}>
 					<p className={styles.downloadAppText}>앱을 다운로드하세요.</p>
 					<div style={{
