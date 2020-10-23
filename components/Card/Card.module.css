@@ -1,0 +1,9 @@
+.Card {
+	margin: 0 0 10px;
+	padding: 10px 0;
+	margin-top: 12px;
+	max-width: 350px;
+	justify-content: center;
+	border: 1px solid rgba(var(--b6a,219,219,219),1);
+	background-color: #ffffff;
+}

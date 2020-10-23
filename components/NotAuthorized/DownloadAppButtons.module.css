@@ -1,0 +1,23 @@
+.DownloadAppButtons {
+	display: inline-block;
+	width: 100%;
+}
+
+.downloadAppText {
+	color: #262626;
+    font-size: 14px;
+    line-height: 18px;
+    margin: 10px 20px 10px 20px;
+    text-align: center;
+}
+
+.buttons {
+	display: inherit;
+	margin: 10px 0 10px 0;
+	width: 100%;
+    text-align: center;
+}
+
+.buttonImage {
+	height: 48px;
+}

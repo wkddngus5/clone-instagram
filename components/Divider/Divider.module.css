@@ -1,0 +1,26 @@
+.divider {
+	margin: 10px 40px 18px;
+	display: flex;
+}
+
+.horizontalLine {
+	flex-grow: 1;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    background-color: #dbdbdb;
+    background-color: rgba(var(--b38,219,219,219),1);
+    height: 1px;
+    position: relative;
+    top: .45em;
+}
+
+.dividerText {
+	flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 15px;
+    margin: 0 18px;
+	text-transform: uppercase;
+	color: rgba(var(--f52,142,142,142),1);
+}

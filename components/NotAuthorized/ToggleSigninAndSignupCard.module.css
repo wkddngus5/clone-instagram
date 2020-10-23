@@ -1,0 +1,13 @@
+.text {
+	display: block;
+	width: fit-content;
+	margin: 15px auto;
+	color: rgba(var(--i1d,38,38,38),1);
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.link {
+	color: #0095f6;
+	text-decoration: none;
+}
