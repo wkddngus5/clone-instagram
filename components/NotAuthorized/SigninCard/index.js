@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useMutation, useApolloClient, gql } from '@apollo/client';
-import { getErrorMessage } from '../../lib/form';
-import Card from '../Card';
-import Input from '../Input';
-import Divider from '../Divider';
-import styles from './FormCard.module.css';
+import { useRouter } from 'next/router';
+import { getErrorMessage } from '../../../lib/form';
+import Card from '../../Card';
+import Input from '../../Input';
+import Divider from '../../Divider';
+import Button from '../../Button';
+import styles from './SigninCard.module.css';
 
 const SignInMutation = gql`
 	mutation SignInMutation($email: String!, $password: String!) {
@@ -18,13 +20,13 @@ const SignInMutation = gql`
 
 function FormCard() {
 	const [signIn] = useMutation(SignInMutation);
+	const router = useRouter();
 	const [errorMsg, setErrorMsg] = useState();
 	const client = useApolloClient();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-	async function handleSubmit(event) {
-		event.preventDefault();
+	async function handleSubmit() {
 		try {
 			await client.resetStore();
 			const { data } = await signIn({
@@ -33,8 +35,10 @@ function FormCard() {
 					password,
 				},
 			});
+			router.push('/');
 		} catch (error) {
 			setErrorMsg(getErrorMessage(error))
+			console.error(error);
 		}
 	}
 	return (
@@ -60,28 +64,25 @@ function FormCard() {
 							/>
 						</div>
 						<div className={styles.formSubmitWrapper}>
-							<button
-								className={`${styles.formSubmit} ${
-									email.length > 0 && password.length > 5
-										? styles.formSubmitActive
-										: ''
-								}`}
+							<Button
+								className={styles.formSubmit}
+								isDisabled={ email.length < 1 || password.length < 5 }
 								onClick={handleSubmit}
 							>
 								로그인
-							</button>
+							</Button>
 						</div>
 						<Divider content="또는" />
-						<div className={styles.facebookLoginWrapper}>
-							<button className={styles.facebookLoginButton}>
-								<span className={styles.facebookLogo} />
-								<span
-									className={styles.facebookLoginButtonText}
-								>
-									Facebook으로 로그인
-								</span>
-							</button>
-						</div>
+						<Button
+							className={styles.facebookLoginButton}
+							type="link">
+							<span className={styles.facebookLogo} />
+							<span
+								className={styles.facebookLoginButtonText}
+							>
+								Facebook으로 로그인
+							</span>
+						</Button>
 					</div>
 					<div
 						className={`${styles.errorMessageWrapper} ${

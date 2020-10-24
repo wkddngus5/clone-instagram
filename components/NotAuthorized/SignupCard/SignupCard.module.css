@@ -23,6 +23,15 @@
     overflow: hidden;
 }
 
+.subTitle {
+	color: #8e8e8e;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 20px;
+    margin: 0 40px 10px;
+    text-align: center;
+}
+
 .siginContent {
 	margin-top: 12px;
 }
@@ -69,42 +78,17 @@
 }
 
 .formSubmit {
-	background-color: rgba(0,149,246,.3);
-	opacity: 1;
-	border: 1px solid transparent;
-	box-sizing: border-box;
-    cursor: pointer;
-    display: block;
-    font-weight: 600;
-    padding: 5px 9px;
-    text-align: center;
-    text-transform: inherit;
-	text-overflow: ellipsis;
-	user-select: none;
 	width: 100%;
-	border-radius: 4px;
-	color: rgba(var(--eca,255,255,255),1);
 }
 
 .formSubmitActive {
 	background-color: #0095f6;
 }
 
-.facebookLoginWrapper {
+.facebookLoginButton {
 	margin: 10px 40px 18px;
 	text-align: center;
-}
-
-.facebookLoginButton {
-	border: 0;
-    color: #0095f6;
-    color: rgba(var(--d69,0,149,246),1);
-    display: inline;
-    padding: 0;
-	position: relative;
-	background: 0 0;
-	cursor: pointer;
-	font-weight: 600;
+	width: -webkit-fill-available;
 }
 
 .facebookLoginButtonText {
@@ -120,7 +104,7 @@
     width: 16px;
 	background-image: url(/images3.png);
 	background-size: 440px 411px;
-	background-position: -347px -329px;
+    background-position: -364px -329px;
 }
 
 .errorMessageWrapper {
@@ -133,26 +117,12 @@
 	text-align: center;
 }
 
-.findPasswordButtonWrapper {
-	flex: 0 0 auto;
-	justify-content: flex-start;
-	align-items: stretch;
-	display: flex;
-	border: 0 solid;
-	text-align: center;
-}
-
-.findPasswordButton {
-	display: block;
-	width: 100%;
-	margin-top: 12px;
-	color: rgba(var(--fe0,0,55,107),1);
+.termsNotice {
+	color: #8e8e8e;
     font-size: 12px;
-    line-height: 14px;
-    margin-top: 12px;
-	text-align: center;
-	cursor: pointer;
-	text-decoration: none;
+    line-height: 16px;
+    margin: 10px 40px;
+    text-align: center;
 }
 
 .hidden {
