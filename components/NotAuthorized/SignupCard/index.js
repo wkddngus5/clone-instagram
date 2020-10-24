@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useMutation, useApolloClient, gql } from '@apollo/client';
-import { getErrorMessage } from '../../lib/form';
-import Card from '../Card';
-import Input from '../Input';
-import Divider from '../Divider';
-import styles from './FormCard.module.css';
+import { getErrorMessage } from '../../../lib/form';
+import Card from '../../Card';
+import Input from '../../Input';
+import Divider from '../../Divider';
+import Button from '../../Button';
+import styles from './SignupCard.module.css';
 
 const SignInMutation = gql`
 	mutation SignInMutation($email: String!, $password: String!) {
@@ -16,7 +17,7 @@ const SignInMutation = gql`
 	}
 }`
 
-function FormCard() {
+function SignupCard() {
 	const [signIn] = useMutation(SignInMutation);
 	const [errorMsg, setErrorMsg] = useState();
 	const client = useApolloClient();
@@ -40,13 +41,35 @@ function FormCard() {
 	return (
 		<Card>
 			<h1 className={styles.title}>Instagram</h1>
+			<h2 className={styles.subTitle}>친구들의 사진과 동영상을 보려면 가입하세요.</h2>
 			<div className={styles.formWrapper}>
 				<form id="loginForm" method="post" onSubmit={handleSubmit}>
 					<div className={styles.formBody}>
+						<Button className={styles.facebookLoginButton}>
+							<span className={styles.facebookLogo} />
+							Facebook으로 로그인
+						</Button>
+						<Divider content="또는" />
 						<div className={styles.formItem}>
 							<Input
 								type="text"
-								placeholder="전화번호, 사용자 이름 또는 이메일"
+								placeholder="휴대폰 번호 또는 이메일 주소"
+								value={email}
+								onChange={setEmail}
+							/>
+						</div>
+						<div className={styles.formItem}>
+							<Input
+								type="text"
+								placeholder="성명"
+								value={email}
+								onChange={setEmail}
+							/>
+						</div>
+						<div className={styles.formItem}>
+							<Input
+								type="text"
+								placeholder="사용자 이름"
 								value={email}
 								onChange={setEmail}
 							/>
@@ -60,28 +83,16 @@ function FormCard() {
 							/>
 						</div>
 						<div className={styles.formSubmitWrapper}>
-							<button
-								className={`${styles.formSubmit} ${
-									email.length > 0 && password.length > 5
-										? styles.formSubmitActive
-										: ''
-								}`}
+							<Button
+								type="submit"
+								className={`${styles.formSubmit}`}
+								isDisabled={email.length === 0 || password.length < 5}
 								onClick={handleSubmit}
 							>
-								로그인
-							</button>
+								가입
+							</Button>
 						</div>
-						<Divider content="또는" />
-						<div className={styles.facebookLoginWrapper}>
-							<button className={styles.facebookLoginButton}>
-								<span className={styles.facebookLogo} />
-								<span
-									className={styles.facebookLoginButtonText}
-								>
-									Facebook으로 로그인
-								</span>
-							</button>
-						</div>
+						
 					</div>
 					<div
 						className={`${styles.errorMessageWrapper} ${
@@ -92,13 +103,8 @@ function FormCard() {
 							잘못된 비밀번호입니다. 다시 확인하세요.
 						</p>
 					</div>
-					<div className={styles.findPasswordButtonWrapper}>
-						<a
-							className={styles.findPasswordButton}
-							href="/accounts/password/reset"
-						>
-							비밀번호를 잊으셨나요?
-						</a>
+					<div className={styles.termsNotice}>
+						<p>가입하면 Instagram의 약관, 데이터 정책 및 쿠키 정책에 동의하게 됩니다.</p>
 					</div>
 				</form>
 			</div>
@@ -106,4 +112,4 @@ function FormCard() {
 	);
 }
 
-export default FormCard;
+export default SignupCard;

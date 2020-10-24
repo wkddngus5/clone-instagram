@@ -2,9 +2,9 @@ import NotAuthorized from '../../components/NotAuthorized';
 
 function EmailSignup() {
 	return (
-		<main className="emailsignup">
+		<main className="login">
 			<NotAuthorized
-				isSignup
+				isSignup={false}
 				showImage={false}
 			/>
 		</main>

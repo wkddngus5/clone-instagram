@@ -1,0 +1,19 @@
+.Button {
+    position: relative;
+	border: 1px solid transparent;
+	background-color: #0095f6;
+	border-radius: 4px;
+	color: #fff;
+	box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-weight: 600;
+    padding: 5px 9px;
+    text-align: center;
+    text-transform: inherit;
+	text-overflow: ellipsis;
+}
+
+.isDisabled {
+	opacity: 0.3;
+}
