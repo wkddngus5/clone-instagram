@@ -4,6 +4,7 @@ function Button({
 	children,
 	className,
 	isDisabled = false,
+	type="primary",
 	onClick: onClickProp,
 }) {
 	function onClickButton(event) {
@@ -16,7 +17,7 @@ function Button({
 
 	return (
 		<button
-			className={`${ styles.Button } ${className} ${isDisabled && styles.isDisabled}`}
+			className={`${ styles.Button } ${className} ${isDisabled && styles.isDisabled} ${styles[type]}`}
 			onClick={onClickButton}>
 			{ children }
 		</button>

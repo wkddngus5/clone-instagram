@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useMutation, useApolloClient, gql } from '@apollo/client';
+import { useRouter } from 'next/router';
 import { getErrorMessage } from '../../../lib/form';
 import Card from '../../Card';
 import Input from '../../Input';
@@ -7,41 +8,62 @@ import Divider from '../../Divider';
 import Button from '../../Button';
 import styles from './SignupCard.module.css';
 
-const SignInMutation = gql`
-	mutation SignInMutation($email: String!, $password: String!) {
-		signIn(input: { email: $email, password: $password }) {
-    		user {
-			id
-			email
+const SignUpMutation = gql`
+	mutation SignUpMutation(
+		$email: String!
+		$fullName: String!
+		$username: String!
+		$password: String!
+	) {
+		signUp(
+			input: {
+				email: $email
+				fullName: $fullName
+				username: $username
+				password: $password
+			}
+		) {
+			user {
+				id
+				email
+				fullName
+				username
+			}
 		}
 	}
-}`
+`;
 
 function SignupCard() {
-	const [signIn] = useMutation(SignInMutation);
+	const [signUp] = useMutation(SignUpMutation);
+	const router = useRouter();
 	const [errorMsg, setErrorMsg] = useState();
 	const client = useApolloClient();
 	const [email, setEmail] = useState('');
+	const [fullName, setFullName] = useState('');
+	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
-	async function handleSubmit(event) {
-		event.preventDefault();
+	async function handleSubmit() {
 		try {
-			await client.resetStore();
-			const { data } = await signIn({
+			const { data } = await signUp({
 				variables: {
 					email,
+					fullName,
+					username,
 					password,
 				},
 			});
+			router.push('/accounts/login');
 		} catch (error) {
-			setErrorMsg(getErrorMessage(error))
+			setErrorMsg(getErrorMessage(error));
 		}
 	}
 	return (
 		<Card>
 			<h1 className={styles.title}>Instagram</h1>
-			<h2 className={styles.subTitle}>친구들의 사진과 동영상을 보려면 가입하세요.</h2>
+			<h2 className={styles.subTitle}>
+				친구들의 사진과 동영상을 보려면 가입하세요.
+			</h2>
 			<div className={styles.formWrapper}>
 				<form id="loginForm" method="post" onSubmit={handleSubmit}>
 					<div className={styles.formBody}>
@@ -62,16 +84,16 @@ function SignupCard() {
 							<Input
 								type="text"
 								placeholder="성명"
-								value={email}
-								onChange={setEmail}
+								value={fullName}
+								onChange={setFullName}
 							/>
 						</div>
 						<div className={styles.formItem}>
 							<Input
 								type="text"
 								placeholder="사용자 이름"
-								value={email}
-								onChange={setEmail}
+								value={username}
+								onChange={setUsername}
 							/>
 						</div>
 						<div className={styles.formItem}>
@@ -84,15 +106,15 @@ function SignupCard() {
 						</div>
 						<div className={styles.formSubmitWrapper}>
 							<Button
-								type="submit"
 								className={`${styles.formSubmit}`}
-								isDisabled={email.length === 0 || password.length < 5}
+								isDisabled={
+									email.length === 0 || password.length < 5
+								}
 								onClick={handleSubmit}
 							>
 								가입
 							</Button>
 						</div>
-						
 					</div>
 					<div
 						className={`${styles.errorMessageWrapper} ${
@@ -104,7 +126,10 @@ function SignupCard() {
 						</p>
 					</div>
 					<div className={styles.termsNotice}>
-						<p>가입하면 Instagram의 약관, 데이터 정책 및 쿠키 정책에 동의하게 됩니다.</p>
+						<p>
+							가입하면 Instagram의 약관, 데이터 정책 및 쿠키
+							정책에 동의하게 됩니다.
+						</p>
 					</div>
 				</form>
 			</div>

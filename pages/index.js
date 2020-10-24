@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { gql, useQuery } from '@apollo/client';
 import NotAuthorized from '../components/NotAuthorized';
@@ -13,7 +12,6 @@ const ViewerQuery = gql`
 `;
 
 const Index = () => {
-	const router = useRouter();
 	const { data, loading, error } = useQuery(ViewerQuery);
 	const viewer = data?.viewer;
 	const showSignIn = !(loading || error || viewer);

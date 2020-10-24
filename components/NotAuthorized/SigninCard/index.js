@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useMutation, useApolloClient, gql } from '@apollo/client';
+import { useRouter } from 'next/router';
 import { getErrorMessage } from '../../../lib/form';
 import Card from '../../Card';
 import Input from '../../Input';
@@ -19,13 +20,13 @@ const SignInMutation = gql`
 
 function FormCard() {
 	const [signIn] = useMutation(SignInMutation);
+	const router = useRouter();
 	const [errorMsg, setErrorMsg] = useState();
 	const client = useApolloClient();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-	async function handleSubmit(event) {
-		event.preventDefault();
+	async function handleSubmit() {
 		try {
 			await client.resetStore();
 			const { data } = await signIn({
@@ -34,8 +35,10 @@ function FormCard() {
 					password,
 				},
 			});
+			router.push('/');
 		} catch (error) {
 			setErrorMsg(getErrorMessage(error))
+			console.error(error);
 		}
 	}
 	return (
@@ -63,23 +66,23 @@ function FormCard() {
 						<div className={styles.formSubmitWrapper}>
 							<Button
 								className={styles.formSubmit}
-								isDisabled={ email.length === 0 || password.length < 5 }
+								isDisabled={ email.length < 1 || password.length < 5 }
 								onClick={handleSubmit}
 							>
 								로그인
 							</Button>
 						</div>
 						<Divider content="또는" />
-						<div className={styles.facebookLoginWrapper}>
-							<button className={styles.facebookLoginButton}>
-								<span className={styles.facebookLogo} />
-								<span
-									className={styles.facebookLoginButtonText}
-								>
-									Facebook으로 로그인
-								</span>
-							</button>
-						</div>
+						<Button
+							className={styles.facebookLoginButton}
+							type="link">
+							<span className={styles.facebookLogo} />
+							<span
+								className={styles.facebookLoginButtonText}
+							>
+								Facebook으로 로그인
+							</span>
+						</Button>
 					</div>
 					<div
 						className={`${styles.errorMessageWrapper} ${
