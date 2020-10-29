@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { gql, useQuery } from '@apollo/client';
 import NotAuthorized from '../components/NotAuthorized';
+import Header from '../components/Header';
 
 const ViewerQuery = gql`
 	query ViewerQuery {
@@ -16,12 +17,12 @@ const Index = () => {
 	const viewer = data?.viewer;
 	const showSignIn = !(loading || error || viewer);
 
-	let content = (<>Loading</>);
+	let content = <>Loading</>;
 
 	if (showSignIn) {
-		content = (<NotAuthorized showImage />);
+		content = <NotAuthorized showImage />;
 	} else if (error) {
-		content = (<p>{error.message}</p>);
+		content = <p>{error.message}</p>;
 	} else if (viewer) {
 		content = (
 			<div>
@@ -37,7 +38,12 @@ const Index = () => {
 		);
 	}
 
-	return <main>{content}</main>;
+	return (
+		<>
+			<Header viewer={viewer} />
+			<main>{content}</main>
+		</>
+	);
 };
 
 export default Index;

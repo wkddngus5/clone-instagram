@@ -1,0 +1,23 @@
+.Header {
+	display: flex;
+	position: fixed;
+	top: 0;
+	height: 54px;
+	align-items: center;
+	width: 100%;
+	z-index: 3;
+	background-color: #ffffff;
+	border-bottom: 1px solid #dbdbdb;
+}
+
+.headerContent {
+	height: 54px;
+	padding: 0 20px;
+	display:-webkit-box;
+	-webkit-box-pack:center;
+	-webkit-box-align:center;
+}
+
+.logoLinkContent {
+	margin-top: 7px;
+}
