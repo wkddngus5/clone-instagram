@@ -1,6 +1,8 @@
 .Header {
-	display: flex;
 	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	top: 0;
 	height: 54px;
 	align-items: center;
@@ -11,13 +13,34 @@
 }
 
 .headerContent {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	height: 54px;
 	padding: 0 20px;
-	display:-webkit-box;
-	-webkit-box-pack:center;
-	-webkit-box-align:center;
+	width: 100%;
+	max-width: 975px;
+}
+
+.logoLinkContainer {
+	flex: 1 9999 0%;
+    min-width: 40px;
 }
 
 .logoLinkContent {
 	margin-top: 7px;
+}
+
+.menu {
+	flex: 1 0 0%;
+}
+
+.menuList {
+	display: flex;
+	justify-content: flex-end;
+	-webkit-justify-content: flex-end;
+}
+
+.menuItem {
+	margin-left: 22px;
 }

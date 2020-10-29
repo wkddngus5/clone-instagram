@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import Search from './Search';
 import styles from './Input.module.css';
 
-export default function Input({ type = 'text', value = '', placeholder = '', onChange }) {
+export default function Input({
+	type = 'text',
+	value = '',
+	placeholder = '',
+	onChange,
+}) {
 	const [inputValue, setInputValue] = useState(value);
 
 	useEffect( () => {
@@ -26,3 +32,5 @@ export default function Input({ type = 'text', value = '', placeholder = '', onC
 		</div>
 	);
 }
+
+Input.Search = Search;
