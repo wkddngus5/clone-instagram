@@ -26,3 +26,9 @@
 	height: 100%;
 	border-radius: 50%;
 }
+
+.profileMenuList {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
