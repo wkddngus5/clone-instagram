@@ -39,6 +39,7 @@
 	display: flex;
 	justify-content: flex-end;
 	-webkit-justify-content: flex-end;
+	align-items: center;
 }
 
 .menuItem {
