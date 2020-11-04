@@ -1,0 +1,34 @@
+.profile {
+	display: flex;
+	justify-content: center;
+	-webkit-justify-content: center;
+	align-items: center;
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	background-color: #fafafa;
+	box-sizing: border-box;
+    overflow: hidden;
+}
+
+.isActive {
+	border: solid 1px #000000;
+}
+
+.profileSpan {
+	display: block;
+	width: 22px;
+	height: 22px;
+}
+
+.profileImage {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+
+.profileMenuList {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}

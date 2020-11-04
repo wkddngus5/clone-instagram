@@ -14,7 +14,6 @@ function Search({ type = 'text', value = '', placeholder = '', onChange }) {
 
     useEffect(() => {
         document.addEventListener('click', ({ target }) => {
-            console.log(ref.current.contains(target), target);
             if (!ref.current.contains(target)) {
                 setIsFocus(false);
                 return;

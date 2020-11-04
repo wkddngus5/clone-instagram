@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Input from '../Input';
 import { Home, Direct, Explore, Heart } from '../Icon';
+import Profile from './Profile';
 import styles from './Header.module.css';
 
 const { Search } = Input;
@@ -37,16 +38,19 @@ function Header({viewer}) {
 							className={styles.menuItem}>
 							<Direct />
 						</a>
-						<a 
+						<a
 							href="/explore"
 							className={styles.menuItem}>
 							<Explore label="사람 찾기" />
 						</a>
-						<a 
+						<a
 							href="/accounts/activity"
 							className={styles.menuItem}>
 							<Heart label="활동 피드" />
 						</a>
+						<Profile
+							className={styles.menuItem}
+							viewer={viewer} />
 					</div>
 				</div>
 			</div>

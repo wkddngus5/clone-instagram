@@ -4,7 +4,9 @@ function Divider({ content = '' }) {
 	return (
 		<div className={styles.divider}>
 			<div className={styles.horizontalLine}></div>
-			<div className={styles.dividerText}>{ content }</div>
+			<div
+				className={styles.dividerText}
+				style={{ display: content.length === 0 ? 'none' : 'block'}}>{ content }</div>
 			<div className={styles.horizontalLine}></div>
 		</div>
 	)
