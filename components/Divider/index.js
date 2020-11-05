@@ -1,8 +1,10 @@
 import styles from './Divider.module.css';
 
-function Divider({ content = '' }) {
+function Divider({ content = '', style }) {
 	return (
-		<div className={styles.divider}>
+		<div
+			className={styles.divider}
+			style={style}>
 			<div className={styles.horizontalLine}></div>
 			<div
 				className={styles.dividerText}

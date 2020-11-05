@@ -22,12 +22,33 @@ function Profile({ viewer, className }) {
 
     const popoverContent = (
         <ul className={styles.profileMenuList}>
-            <li>프로필</li>
-            <li>저장됨</li>
-            <li>설정</li>
-            <li>계정전환</li>
-            <Divider />
-            <li>로그아웃</li>
+            <a>
+                <li className={styles.profileMenu}>
+                    프로필
+                </li>
+            </a>
+            <a>
+                <li className={styles.profileMenu}>
+                    저장됨
+                </li>
+            </a>
+            <a>
+                <li className={styles.profileMenu}>
+                    설정
+                </li>
+            </a>
+            <a>
+                <li className={styles.profileMenu}>
+                    계정전환
+                </li>
+            </a>
+            <Divider
+                style={{margin: '0 0 15px 0' }} />
+            <a>
+                <li className={styles.profileMenu}>
+                    로그아웃
+                </li>
+            </a>
         </ul>
     )
 

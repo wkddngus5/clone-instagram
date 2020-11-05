@@ -39,6 +39,7 @@ function Profile({ content, children }) {
                 height: contentHeight,
             } = contentRef.current.getBoundingClientRect();
 
+            console.log(contentWidth);
             setPopoverStyle({
                 top: `${offsetTop + height + 14}px`,
                 left: `${offsetLeft - contentWidth + 50}px`,
