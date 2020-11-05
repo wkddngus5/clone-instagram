@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import Popover from '../Popover';
 import Divider from '../Divider';
-import { Profile as ProfileIcon, Bookmark as BookmarkIcon, Setting as SettingIcon } from '../Icon';
+import { Profile as ProfileIcon, Bookmark as BookmarkIcon, Setting as SettingIcon, Change as ChangeIcon } from '../Icon';
 import styles from './Profile.module.css';
 
 function Profile({ viewer, className }) {
@@ -44,7 +44,10 @@ function Profile({ viewer, className }) {
                 </li>
             </a>
             <a>
-                <li className={styles.profileMenu}>계정전환</li>
+                <li className={styles.profileMenu}>
+                    <ChangeIcon />
+                    계정전환
+                </li>
             </a>
             <Divider style={{ margin: '0 0 15px 0' }} />
             <a>
